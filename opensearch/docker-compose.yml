@@ -1,0 +1,49 @@
+version: '3'
+services:
+  node1:
+    image: opensearchproject/opensearch:1.2.0
+    container_name: node1
+    environment:
+      - discovery-type=single-node
+      - cluster.name=opensearch-cluster
+      - node.name=node1
+      - discovery.seed_hosts=node1
+      - cluster.initial_master_nodes=node1
+    volumes:
+      - /usr/share/opensearch/data:/usr/share/opensearch/data
+    ports:
+      - 9200:9200
+      - 9600:9600
+    networks:
+      - opensearch-network
+  opensearch-dashboards:
+    image: opensearchproject/opensearch-dashboards:latest
+    container_name: opensearch-dashboards
+    ports:
+      - 5601:5601
+    expose:
+      - "5601"
+    volumes:
+      - /usr/share/opensearch/configs/opensearch_dashboards.yml:/usr/share/opensearch-dashboards/config/opensearch_dashboards.yml
+      - /usr/share/opensearch/configs/certs/root-ca.pem:/usr/share/opensearch/root-ca.pem
+      - /usr/share/opensearch/configs/certs/root-ca-key.pem:/usr/share/opensearch/root-ca-key.pem
+    environment:
+      OPENSEARCH_HOSTS: '["https://node1:9200"]' # must be a string with no spaces when specified as an environment variable
+    networks:
+      - opensearch-network
+    depends_on:
+      - node1
+  logstash-node:
+    image: opensearchproject/logstash-oss-with-opensearch-output-plugin:7.16.2
+    container_name: logstash_node
+    ports:
+      - 5044:5044
+    networks:
+      - opensearch-network
+    depends_on:
+      - node1
+    volumes:
+      - /usr/share/opensearch/configs/logstash/pipelines:/usr/share/logstash/pipeline
+
+networks:
+  opensearch-network:
