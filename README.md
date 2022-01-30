@@ -1,0 +1,1 @@
+This project contains some notes and tools, that has helped me in devops.
