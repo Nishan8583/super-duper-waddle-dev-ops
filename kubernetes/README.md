@@ -20,7 +20,7 @@
  -> kubectl get pods
  -> 
 
- -> deploy app kubectl create deployment <deploy_name> --image=<full docker image path> // the command, searches for node that can run
+ -> deploy app kubectl create deployment {deploy_name} --image={full docker image path} // the command, searches for node that can run
  the app, schedlues the app to run, configured the cluster to reschedule the instance on a new Node when needed
 
  -> list deployments: kubectl get deployments
