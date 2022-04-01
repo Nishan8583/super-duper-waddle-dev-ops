@@ -40,6 +40,14 @@
 <myStorageAcct> --location <myLocation> \ 
 --kind BlockBlobStorage --sku Premium_LRS``
 
+### Application Delivery
+#### 1. CDN:
+A -------------------> CDNs(edge server, edge point, point of presense) ----------------> Source origin
+B <-------------------> No need to reach source origin now
+
+
+1. CDN caching: global (for each endpoint)
+
 ### Event Based Solutions
 -> An event is the smallest unit of information that describes what happened. Metainformation
 
