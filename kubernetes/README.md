@@ -119,8 +119,10 @@ Scaling is accomplished by changing the number of replicas in a Deployment.
 
 
 
+## Updates
+**Rolling updates** allow Deployments' update to take place with zero downtime by incrementally updating Pods instances with new ones. The new Pods will be scheduled on Nodes with available resources.
 
-
+**NOTE: have multiple replicas before hand**
 
 
 ## Commands:
@@ -134,6 +136,7 @@ Scaling is accomplished by changing the number of replicas in a Deployment.
 
 **kubectl describe pods**: get detailed information about pods
 
+**deploy app kubectl create deployment {deploy_name} --image={full docker image path}**: create a deployment
 // need to use proxy to get access to pods
 
 **kubectl proxy**: starts a proxy
@@ -168,3 +171,12 @@ Scaling is accomplished by changing the number of replicas in a Deployment.
 **kubectl get pods -l version=v1**
 
 **kubectl delete service -l app={service_name}**
+
+**kubectl get rs**: shows DESIRED number of replicas and CURRENT number of replicas currently running.
+
+**kubectl scale deployments/kubernetes-bootcamp --replicas=4**: increase number of replicas, basically increase number of pods runing
+with every request a different pod is hit (load balancing). To scale down decrease number of replicas
+
+**kubectl set image deployments/{deployment_name} {deployment_name}={different image}:v2**: for updating
+
+**kubectl rollout undo deployments/{}**: to roll back to last working version
