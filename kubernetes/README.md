@@ -11,14 +11,21 @@
     
 ## Create deployment:
  -> Deploy an app using Kubernetes Deployment configuration
+
  -> If the Node hosting an instance goes down or is deleted, the Deployment controller replaces the instance with an instance on another Node in the cluster
+
  -> A Pod is the basic execution unit of a Kubernetes application. Each Pod represents a part of a workload that is running on your cluster.
+
  -> kubectl is a command line tool to interact with kuberneter cluster
+
  -> kubectl get nodes --help
+
  -> kubectl --help
+ 
  -> kubectl get nodes  // gets all nodes in a cluster
+
  -> kubectl get pods
- -> 
+
 
  -> deploy app kubectl create deployment {deploy_name} --image={full docker image path} // the command, searches for node that can run
  the app, schedlues the app to run, configured the cluster to reschedule the instance on a new Node when needed
