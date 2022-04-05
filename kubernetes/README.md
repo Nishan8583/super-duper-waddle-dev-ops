@@ -119,6 +119,30 @@ k delete deployment nginx-deployment
 13. kubectl expose deployment nishan-hello --type=LoadBalancer --port=8080
 
  get random port, in cloud external ip will not be pending
+
+ 14. Rolling Update, pods will be replaced one by one, obviously need replicas
+ kubectl.exe set image deployment k8s-test k8s-test=nishan8583/k8s-test:2.0.0
+
+ this wierd requirement, deployment name and image name must be same for some reason, here deployment name is same as image name k8s-test
+
+ 15. minikube dashboard
+
+ 16. declarative approach, yaml config files
+
+ 17. kubectl delete all --all  // delete everything in default namespace
+
+ 18. Declarative deployment: see the yaml files.
+
+ kubectl.exe apply -f file_path.yaml
+ 
+ kubectl.exe delete -f file_path.yaml
+
+ selector: matchabale, describe which pods will be managed by this deployment, label must be same in pods and selector
+ 500m half the cpu core, 240m 1/4th of CPU core
+
+ reference: https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/
+ https://kubernetes.io/docs/reference/kubernetes-api/service-resources/
+
 ## Commands:
 **kubectl get nodes --help**
 

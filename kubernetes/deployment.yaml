@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-test
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: k8s-test
+  template:
+    metadata:
+      labels:
+        app: k8s-test  # label must be same in pods and selector
+    spec:
+      containers:
+      - name: k8s-test
+        image: nishan8583/k8s-test
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "240m"
+        ports:
+        - containerPort: 8080

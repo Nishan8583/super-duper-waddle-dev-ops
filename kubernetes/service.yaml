@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: k8s-test
+spec:
+  type: LoadBalancer
+  selector:
+    app: k8s-test
+  ports:
+  - port: 8080 # EXternal port, if LoadBalancer type, this will be internal for some reason wut?
+    targetPort: 8080  # internal port
